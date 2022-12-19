@@ -1,0 +1,52 @@
+﻿@model List<Aplication.ViewModel.RegionViewModel>
+@{
+    ViewData["Title"] = "Regions";
+}
+
+
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Regions" asp-action="EditOCreate" class="btn btn-outline-success">Create</a>
+        </div>
+
+    </div>
+    @if (Model.Count == 0)
+    {
+        <h2>No hay regiones inscritas</h2>
+    }
+    else
+    {
+        @foreach (Aplication.ViewModel.RegionViewModel item in Model)
+        {
+            <div class="row">
+                <div class="list-group w-auto">
+                    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                        <div class="d-flex gap-2 w-100 justify-content-between">
+                            <div>
+                                <h6 class="mb-0">region:</h6>
+                                <p class="mb-0 opacity-75">@item.Name</p>
+
+                            </div>
+
+@*                            <a href="#" class="btn btn-sm btn-outline-info">Edit</a>
+                            <a href="#" class="btn btn-sm btn-outline-danger">Delete</a>*@
+
+                                                                <div class="btn-group">
+                                        <a asp-controller="Regions" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                        <a asp-controller="Regions" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    </div>
+
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        }
+    }
+
+
+
+</div>
+

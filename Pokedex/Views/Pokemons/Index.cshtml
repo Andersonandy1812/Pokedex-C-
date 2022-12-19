@@ -1,0 +1,43 @@
+﻿@model List<Aplication.ViewModel.PokemonViewModel>
+@{
+    ViewData["Title"] = "Pokemons";
+}
+
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Pokemons" asp-action="EditOCreate" class="btn btn-outline-success">Create</a>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @if (Model.Count == 0)
+            {
+                <h2>No hay regiones inscritas</h2>
+            }
+            else
+            {
+                @foreach (Aplication.ViewModel.PokemonViewModel pk in Model)
+                {
+
+
+                    <div class="col-4">
+                        <div class="card shadow-sm">
+                            <img Class="bd-Placeholder-img card-img-top" width="100%" height="225" src="@pk.URLImage" />
+
+                            <div class="card-body">
+                                <h4>@pk.Name</h4>
+                                <div>
+                                    <p class="card-text">@pk.TypeOfPokemonId</p>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a asp-controller="Pokemons" asp-action="Delete" asp-route-id="@pk.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                        <a asp-controller="Pokemons" asp-action="Edit" asp-route-id="@pk.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>

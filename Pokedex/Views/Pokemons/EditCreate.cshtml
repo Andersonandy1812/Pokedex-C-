@@ -1,0 +1,68 @@
+﻿@model Aplication.ViewModel.PokemonEditCreateViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "Save";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h4>@(editMode ? $"You are editting: {Model.Name}" : "You are creating a new Pokemon")</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-controller="Pokemons" asp-action="@(editMode ? "Edit":"EditOCreate")">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Name: </label>
+                            <input asp-for="Name" type="text" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="URLImage" class="form-label">URL imagen: </label>
+                            <input asp-for="URLImage" type="text" class="form-control" />
+                            <span asp-validation-for="URLImage" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="RegionId" class="form-label">Region: </label>
+                            <select asp-for="RegionId" class="form-select">
+                                <option value="">Seleccione una opcion</option>
+                                <option value="1">Sinnoh</option>
+                                <option value="2">Kanto</option>
+                            </select>
+                            <span asp-validation-for="RegionId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TypeOfPokemonId" class="form-label">Type: </label>
+                            <select asp-for="TypeOfPokemonId" class="form-select">
+                                <option value="">Seleccione una opcion</option>
+                                @*DataBase.Models.Pokemon*@
+@*                                @foreach (Aplication.ViewModel.PokemonEditCreateViewModel item in Model)
+                                {
+                                    <option value="@item.TypeOfPokemonId">@item.TypeOfPokemon.Name</option>
+                                }*@
+                                <option value="1">Thunder</option>                                
+                                <option value="2">Flying</option>
+                                <option value="3">Fire</option>
+                            </select>
+                            <span asp-validation-for="TypeOfPokemonId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="SecondTypeOfPokemonId" class="form-label">Type: </label>
+                            <select asp-for="SecondTypeOfPokemonId" class="form-select">
+                                <option value="">Seleccione una opcion</option>
+                                <option value="1">Thunder</option>
+                                <option value="2">Flying</option>
+                                <option value="3">Fire</option>
+                            </select>
+                        </div>
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a asp-controller="Pokemons" asp-action="Index" class="btn btn-warning">Go back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

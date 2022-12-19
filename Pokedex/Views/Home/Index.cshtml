@@ -1,0 +1,47 @@
+﻿@model List<Aplication.ViewModel.PokemonViewModel>
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="container-fluid">
+    @if (Model.Count == 0 || Model == null)
+    {
+        <h4>Without Pokemon</h4>
+    }
+    else
+    {
+
+
+        @foreach (Aplication.ViewModel.PokemonViewModel item in Model)
+        {
+
+
+            <div class="col-4">
+                <div class="card shadow-sm">
+                    <img Class="bd-Placeholder-img card-img-top" src="@item.URLImage" />
+
+                    <div class="card-body">
+                        <h4>@item.Name</h4>
+                        <div>
+                            <p class="card-text">@item.TypeOfPokemonId</p>
+                            @if (Model.Count == 0 || Model == null)
+                            {
+                                <p type="hidden" class="card-text">@item.SecondTypeOfPokemonId</p>
+                            }
+                            else
+
+                            {
+                                <p class="card-text">@item.SecondTypeOfPokemonId</p>
+                            }
+
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Kanto</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>

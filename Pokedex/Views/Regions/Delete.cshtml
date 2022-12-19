@@ -1,0 +1,20 @@
+﻿@model Aplication.ViewModel.EditCreateViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+<div  class="row">
+    <div class="col-6 offset-3">
+        <div class="card-header bg-danger text-light">
+            <h4>Esta seguro que desea borrar el a @Model.Name?</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-controller="Regions" asp-action="DeletePost">
+                <input type="hidden" asp-for="Id"/>
+
+                <button type="submit" class="btn-primary btn-danger">Delete</button>
+                <a asp-controller="Pokemon" asp-action="Index" class="btn btn-warning">Cancel</a>
+
+            </form>
+        </div>
+    </div>
+</div>
